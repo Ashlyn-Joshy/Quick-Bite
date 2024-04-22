@@ -1,6 +1,31 @@
-#data {
+.HeadPart {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
   border: 1px solid black;
 }
-#message {
-  color: plum;
+.logo > a > img {
+  width: 100px;
+  height: 100px;
+}
+.navlist > ul {
+  list-style-type: none;
+  display: flex;
+}
+.navlist > ul > li {
+  margin: 10px;
+}
+
+.restaurant {
+  border: 1px solid black;
+  margin: 5px;
+}
+.restaurant > img {
+  width: 150px;
+  height: 150px;
+}
+.restaurant-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
