@@ -4,28 +4,44 @@
   margin: 10px;
   border: 1px solid black;
 }
-.logo > a > img {
+.logo > img {
   width: 100px;
   height: 100px;
 }
 .navlist > ul {
+  font-size: 24px;
   list-style-type: none;
   display: flex;
 }
 .navlist > ul > li {
   margin: 10px;
+  padding: 10px;
 }
 
 .restaurant {
   border: 1px solid black;
-  margin: 5px;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
 }
 .restaurant > img {
-  width: 150px;
-  height: 150px;
+  width: 100%;
 }
 .restaurant-data {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.SearchContainer {
+  text-align: center;
+  margin: 10px;
+}
+
+.SearchInput {
+  width: 50%;
+  height: 25px;
+}
+.SearchButton {
+  height: 30px;
 }
