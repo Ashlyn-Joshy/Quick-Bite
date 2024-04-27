@@ -17,6 +17,11 @@
   margin: 10px;
   padding: 10px;
 }
+.navBtn > button {
+  margin: 30px;
+  padding: 10px;
+  font-size: 20px;
+}
 
 .restaurant {
   border: 1px solid black;
@@ -30,7 +35,7 @@
 .restaurant-data {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
 }
 
 .SearchContainer {
@@ -44,4 +49,36 @@
 }
 .SearchButton {
   height: 30px;
+}
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.shimmer-card {
+  width: 200px;
+  height: 400px;
+  margin: 20px;
+  background-color: rgb(240, 226, 226);
+}
+
+.error-page {
+  text-align: center;
+}
+
+.restaurant-info {
+  display: flex;
+  justify-content: space-evenly;
+}
+.restaurant-info-img > img {
+  height: 300px;
+  width: 300px;
+}
+.restaurant-info-data {
+  text-align: center;
+  margin: 50px;
+}
+.restaurant-info-data > h3 {
+  color: red;
 }
