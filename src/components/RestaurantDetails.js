@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import { restaurant_menu } from "../constants";
 import { useEffect, useState } from "react";
-import { restaurant_img } from "../constants";
 
 import ShimmerEffect from "./ShimmerEffect";
 
 const RestaurantDetails = () => {
   const [restaurant, setRestaurant] = useState();
   const { id } = useParams();
+
   useEffect(() => {
     restaurant_info();
   }, []);
@@ -17,7 +17,6 @@ const RestaurantDetails = () => {
     const json = await data.json();
     setRestaurant(json.data);
   };
-  console.log(restaurant?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR);
 
   if (!restaurant) return <ShimmerEffect />;
 

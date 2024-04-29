@@ -1,4 +1,4 @@
-import logo from "../asset/img/logo.jpg";
+import logo from "../assets/img/logo.jpg";
 const Title = () => {
   return (
     <div className="logo">
