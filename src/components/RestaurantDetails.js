@@ -1,22 +1,15 @@
 import { useParams } from "react-router-dom";
-import { restaurant_menu } from "../constants";
-import { useEffect, useState } from "react";
-
 import ShimmerEffect from "./ShimmerEffect";
+import useRestaurantDetails from "../Hooks/useRestaurantDetails.js";
+import { restaurant_img } from "../constants.js";
+import useOnline from "../Hooks/useOnline.js";
 
 const RestaurantDetails = () => {
-  const [restaurant, setRestaurant] = useState();
+  const isOnline = useOnline();
+  if (!isOnline) return <h1>check the internet connection </h1>;
+
   const { id } = useParams();
-
-  useEffect(() => {
-    restaurant_info();
-  }, []);
-
-  const restaurant_info = async () => {
-    const data = await fetch(restaurant_menu + id);
-    const json = await data.json();
-    setRestaurant(json.data);
-  };
+  const restaurant = useRestaurantDetails(id);
 
   if (!restaurant) return <ShimmerEffect />;
 
@@ -29,7 +22,7 @@ const RestaurantDetails = () => {
           <img
             alt="food"
             src={
-              "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
+              restaurant_img +
               restaurant?.cards[2]?.card?.card?.info?.cloudinaryImageId
             }
           />

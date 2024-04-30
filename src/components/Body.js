@@ -1,36 +1,19 @@
-import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
-import ShimmerEffect from "./ShimmerEffect";
 import { Link } from "react-router-dom";
-
-const filterRestaurants = (searchValue, restaurants) => {
-  const data = restaurants.filter((restaurant) =>
-    restaurant.info.name.toLowerCase().includes(searchValue.toLowerCase())
-  );
-  return data;
-};
-
+import RestaurantCard from "./RestaurantCard";
+import ShimmerEffect from "./ShimmerEffect";
+import Search from "./Search.js";
+import useRestaurantDataBody from "../Hooks/useRestaurantDataBody.js";
+import useOnline from "../Hooks/useOnline.js";
 const Body = () => {
-  const [allRestaurants, setAllRestaurants] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [searchValue, setSearchValue] = useState("");
+  const [
+    allRestaurants,
+    filteredRestaurants,
+    searchValue,
+    setFilteredRestaurants,
+  ] = useRestaurantDataBody();
 
-  useEffect(() => {
-    apiCalling();
-  }, []);
-
-  const apiCalling = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=10.0303222&lng=76.30728049999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    setFilteredRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setAllRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  };
+  const isOnline = useOnline();
+  if (!isOnline) return <h1>No Internet Connection</h1>;
 
   if (allRestaurants?.length === 0) return <ShimmerEffect />;
   if (filteredRestaurants.length === 0)
@@ -38,30 +21,10 @@ const Body = () => {
 
   return (
     <>
-      <div className="SearchContainer">
-        <input
-          type="text"
-          placeholder="Search"
-          className="SearchInput"
-          value={searchValue}
-          onChange={(e) => {
-            setSearchValue(e.target.value);
-          }}
-          onKeyUp={() => {
-            const data = filterRestaurants(searchValue, allRestaurants);
-            setFilteredRestaurants(data);
-          }}
-        />
-        <button
-          className="SearchButton"
-          onClick={() => {
-            const data = filterRestaurants(searchValue, allRestaurants);
-            setFilteredRestaurants(data);
-          }}
-        >
-          Search
-        </button>
-      </div>
+      <Search
+        allRestaurants={allRestaurants}
+        setFilteredRestaurants={setFilteredRestaurants}
+      />
 
       <div className="restaurant-data">
         {filteredRestaurants.map((restaurant) => {
@@ -78,4 +41,5 @@ const Body = () => {
     </>
   );
 };
+
 export default Body;
