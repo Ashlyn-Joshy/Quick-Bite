@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import ShimmerEffect from "./ShimmerEffect";
 import useRestaurantDetails from "../Hooks/useRestaurantDetails.js";
 import { restaurant_img } from "../constants.js";
@@ -17,6 +17,7 @@ const RestaurantDetails = () => {
     <div className="restaurant-details">
       <h1>{restaurant?.cards[2]?.card?.card?.info?.name}</h1>
       <h4>{restaurant?.cards[2]?.card?.card?.info?.city}</h4>
+
       <div className="restaurant-info">
         <div className="restaurant-info-img">
           <img
@@ -27,6 +28,7 @@ const RestaurantDetails = () => {
             }
           />
         </div>
+
         <dvi className="restaurant-info-data">
           <h2>
             ⭐{restaurant?.cards[2]?.card?.card?.info?.avgRating} (
@@ -36,6 +38,7 @@ const RestaurantDetails = () => {
           <h3>{restaurant?.cards[2]?.card?.card?.info?.cuisines.join(", ")}</h3>
         </dvi>
       </div>
+
       <div>
         <h2>Menus details</h2>
 
@@ -53,6 +56,10 @@ const RestaurantDetails = () => {
           )}
         </ul>
       </div>
+
+      <button>
+        <Link to={"/"}>Back to Home</Link>
+      </button>
     </div>
   );
 };

@@ -4,7 +4,7 @@ const useRestaurantDataBody = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     apiCalling();
   }, []);
@@ -15,6 +15,7 @@ const useRestaurantDataBody = () => {
     setFilteredRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setIsLoaded(true);
     setAllRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -24,6 +25,7 @@ const useRestaurantDataBody = () => {
     allRestaurants,
     filteredRestaurants,
     searchValue,
+    isLoaded,
     setFilteredRestaurants,
   ];
 };

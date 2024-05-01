@@ -9,34 +9,37 @@ const Body = () => {
     allRestaurants,
     filteredRestaurants,
     searchValue,
+    isLoaded,
     setFilteredRestaurants,
   ] = useRestaurantDataBody();
 
   const isOnline = useOnline();
   if (!isOnline) return <h1>No Internet Connection</h1>;
 
-  if (allRestaurants?.length === 0) return <ShimmerEffect />;
-  if (filteredRestaurants.length === 0)
-    return <h1>No Restaurant found {searchValue}</h1>;
-
-  return (
+  return !isLoaded ? (
+    <ShimmerEffect />
+  ) : (
     <>
       <Search
         allRestaurants={allRestaurants}
         setFilteredRestaurants={setFilteredRestaurants}
       />
 
-      <div className="restaurant-data">
-        {filteredRestaurants.map((restaurant) => {
-          return (
-            <Link
-              key={restaurant.info.id}
-              to={"/restaurant/" + restaurant.info.id}
-            >
-              <RestaurantCard {...restaurant.info} />
-            </Link>
-          );
-        })}
+      <div className=" flex flex-wrap m-8">
+        {filteredRestaurants?.length === 0 ? (
+          <h1>No Restaurant found </h1>
+        ) : (
+          filteredRestaurants.map((restaurant) => {
+            return (
+              <Link
+                key={restaurant.info.id}
+                to={"/restaurant/" + restaurant.info.id}
+              >
+                <RestaurantCard {...restaurant.info} />
+              </Link>
+            );
+          })
+        )}
       </div>
     </>
   );
