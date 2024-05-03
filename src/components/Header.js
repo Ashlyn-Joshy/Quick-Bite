@@ -6,10 +6,10 @@ import cartIcon from "../assets/img/shoppingCart.png";
 const Header = () => {
   const [userAuth, setUserAuth] = useState("Login");
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between p-3 ">
       <Title />
       <div className="navlist">
-        <ul className="flex m-8">
+        <ul className="flex p-3">
           <li className="px-2  font-bold hover:text-green-600  hover:underline-offset-2 hover:underline">
             <Link to={"/"}>Home</Link>
           </li>
@@ -21,7 +21,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <div className="flex m-5">
+      <div className="flex ">
         <button>
           <img
             className="w-9 p-2 hover:bg-green-600 rounded mx-2"

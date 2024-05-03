@@ -5,9 +5,9 @@ const Search = ({ allRestaurants, setFilteredRestaurants }) => {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <div className=" m-5 h-40 bg-red-400 flex ">
+    <div className=" m-5 h-40  flex ">
       <div className="m-6">
-        <h1 className=" font-extrabold text-5xl">
+        <h1 className=" font-extrabold text-5xl text-green-600">
           Find restaurants near you...
         </h1>
       </div>

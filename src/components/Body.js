@@ -25,7 +25,7 @@ const Body = () => {
         setFilteredRestaurants={setFilteredRestaurants}
       />
 
-      <div className=" flex flex-wrap m-8">
+      <div className=" flex flex-wrap m-8 ">
         {filteredRestaurants?.length === 0 ? (
           <h1>No Restaurant found </h1>
         ) : (

@@ -3,8 +3,12 @@ import ShimmerEffect from "./ShimmerEffect";
 import useRestaurantDetails from "../Hooks/useRestaurantDetails.js";
 import { restaurant_img } from "../constants.js";
 import useOnline from "../Hooks/useOnline.js";
+import FoodCategory from "./FoodCategory.js";
+import { useState } from "react";
 
 const RestaurantDetails = () => {
+  const [showIndex, setShowIndex] = useState(null);
+
   const isOnline = useOnline();
   if (!isOnline) return <h1>check the internet connection </h1>;
 
@@ -13,53 +17,59 @@ const RestaurantDetails = () => {
 
   if (!restaurant) return <ShimmerEffect />;
 
+  const {
+    name,
+    city,
+    cloudinaryImageId,
+    avgRating,
+    totalRatingsString,
+    costForTwoMessage,
+    cuisines,
+  } = restaurant?.cards[2]?.card?.card?.info;
+
+  const categories =
+    restaurant?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+
   return (
     <div className="restaurant-details">
-      <h1>{restaurant?.cards[2]?.card?.card?.info?.name}</h1>
-      <h4>{restaurant?.cards[2]?.card?.card?.info?.city}</h4>
-
-      <div className="restaurant-info">
-        <div className="restaurant-info-img">
-          <img
-            alt="food"
-            src={
-              restaurant_img +
-              restaurant?.cards[2]?.card?.card?.info?.cloudinaryImageId
-            }
-          />
+      <div className="flex mx-40 my-20 justify-center">
+        <div className="w-52">
+          <img alt="food" src={restaurant_img + cloudinaryImageId} />
         </div>
-
-        <dvi className="restaurant-info-data">
-          <h2>
-            ⭐{restaurant?.cards[2]?.card?.card?.info?.avgRating} (
-            {restaurant?.cards[2]?.card?.card?.info?.totalRatingsString}) .{" "}
-            {restaurant?.cards[2]?.card?.card?.info?.costForTwoMessage}
+        <div className="m-10">
+          <h1 className="font-mono font-bold text-3xl">{name}</h1>
+          <h4 className="font-sans font-semibold text-xl">{city}</h4>
+          <h2 className="font-semibold ">
+            🌟{avgRating} ({totalRatingsString}) {costForTwoMessage}
           </h2>
-          <h3>{restaurant?.cards[2]?.card?.card?.info?.cuisines.join(", ")}</h3>
-        </dvi>
+          <h3 className="text-green-600 underline underline-offset-2 ">
+            {cuisines.join(", ")}
+          </h3>
+        </div>
       </div>
 
-      <div>
-        <h2>Menus details</h2>
-
-        <h3>
-          {
-            restaurant?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
-              ?.card?.card?.title
-          }
-        </h3>
-        <ul>
-          {(restaurant?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards).map(
-            (item) => (
-              <li key={item?.card?.info?.id}>{item?.card?.info?.name}</li>
-            )
-          )}
-        </ul>
+      <div className="w-6/12 mx-auto ">
+        {categories.map((c, index) => (
+          <FoodCategory
+            key={c?.card?.card?.title}
+            data={c?.card?.card}
+            showData={index === showIndex ? true : false}
+            setShowIndex={() => setShowIndex(index)}
+          />
+        ))}
       </div>
 
-      <button>
-        <Link to={"/"}>Back to Home</Link>
-      </button>
+      <div className="m-5">
+        <button>
+          <Link to={"/"} className="bg-green-600 text-white p-2 rounded">
+            Back to Home
+          </Link>
+        </button>
+      </div>
     </div>
   );
 };
