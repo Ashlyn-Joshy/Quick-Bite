@@ -5,40 +5,79 @@ import cartIcon from "../assets/img/shoppingCart.png";
 
 const Header = () => {
   const [userAuth, setUserAuth] = useState("Login");
+  const [displayNav, setDisplayNav] = useState(false);
+  const showNav = () => {
+    setDisplayNav(!displayNav);
+  };
+  console.log(displayNav);
   return (
-    <div className="flex justify-between p-3 ">
-      <Title />
-      <div className="navlist">
-        <ul className="flex p-3">
-          <li className="px-2  font-bold hover:text-green-600  hover:underline-offset-2 hover:underline">
-            <Link to={"/"}>Home</Link>
-          </li>
-          <li className="px-2  font-bold hover:text-green-600  hover:underline-offset-2 hover:underline">
-            <Link to={"/contact"}>Contact</Link>
-          </li>
-          <li className="px-2  font-bold hover:text-green-600  hover:underline-offset-2 hover:underline">
-            <Link to={"/about"}>About</Link>
-          </li>
-        </ul>
-      </div>
-      <div className="flex ">
-        <button>
-          <img
-            className="w-9 p-2 hover:bg-green-600 rounded mx-2"
-            src={cartIcon}
-            alt="cartIcon"
-          />
-        </button>
-        <button
-          className="p-2 bg-green-600 rounded text-white"
-          onClick={() =>
-            userAuth === "Login" ? setUserAuth("Logout") : setUserAuth("Login")
-          }
+    <>
+      <nav className="flex items-center justify-between flex-wrap p-6 ">
+        <div className="flex items-center flex-shrink-0 mr-6">
+          <Title />
+        </div>
+        <div className="block lg:hidden">
+          <button
+            className="flex items-center px-3 py-2 border rounded text-green-600 border-green-600 hover:text-white hover:bg-green-600"
+            onClick={showNav}
+          >
+            <svg
+              className="fill-current h-3 w-3"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+          </button>
+        </div>
+        <div
+          className={`w-full block flex-grow lg:flex lg:items-center lg:w-auto navbarItems ${
+            displayNav ? "" : "hidden"
+          }`}
         >
-          {userAuth}
-        </button>
-      </div>
-    </div>
+          <div className="text-sm lg:flex-grow">
+            <Link
+              to={"/"}
+              className="block mt-4 lg:inline-block lg:mt-0 text-green-600 hover:underline hover:underline-2 font-bold mr-4"
+            >
+              Home
+            </Link>
+            <Link
+              to={"/contact"}
+              className="block mt-4 lg:inline-block lg:mt-0 text-green-600 hover:underline hover:underline-2 font-bold mr-4"
+            >
+              Contact
+            </Link>
+            <Link
+              to={"/about"}
+              className="block mt-4 lg:inline-block lg:mt-0 text-green-600 hover:underline hover:underline-2 font-bold"
+            >
+              About
+            </Link>
+          </div>
+          <div>
+            <button>
+              <img
+                className="h-10 inline-block text-sm px-4 py-2 mr-4 leading-none border rounded text-green-600 border-green-600 hover:border-transparent hover:text-white hover:bg-green-600 mt-4 lg:mt-0"
+                src={cartIcon}
+                alt="cartIcon"
+              />
+            </button>
+            <button
+              className="inline-block text-sm px-4 py-2 leading-none border rounded text-green-600 border-green-600 hover:border-transparent hover:text-white hover:bg-green-600 mt-4 lg:mt-0"
+              onClick={() =>
+                userAuth === "Login"
+                  ? setUserAuth("Logout")
+                  : setUserAuth("Login")
+              }
+            >
+              {userAuth}
+            </button>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };
 

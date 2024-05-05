@@ -1,25 +1,26 @@
 const ShimmerEffect = () => {
   return (
-    <div className="shimmer-container">
-      <h1>loading .....</h1>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
-      <div className="shimmer-card"></div>
+    <div className="flex flex-wrap m-10">
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
+      <div className="bg-gray-300 w-52 h-52 m-2"></div>
     </div>
   );
 };
