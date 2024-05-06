@@ -2,6 +2,7 @@ import Title from "./logo";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import cartIcon from "../assets/img/shoppingCart.png";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [userAuth, setUserAuth] = useState("Login");
@@ -9,7 +10,9 @@ const Header = () => {
   const showNav = () => {
     setDisplayNav(!displayNav);
   };
-  console.log(displayNav);
+
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
     <>
       <nav className="flex items-center justify-between flex-wrap p-6 ">
@@ -57,13 +60,12 @@ const Header = () => {
             </Link>
           </div>
           <div>
-            <button>
-              <img
-                className="h-10 inline-block text-sm px-4 py-2 mr-4 leading-none border rounded text-green-600 border-green-600 hover:border-transparent hover:text-white hover:bg-green-600 mt-4 lg:mt-0"
-                src={cartIcon}
-                alt="cartIcon"
-              />
-            </button>
+            <Link to={"/cart"}>
+              <button className="text-sm px-4 py-2 mr-4 leading-none border rounded text-green-600 border-green-600 hover:border-transparent hover:text-white hover:bg-green-600 mt-4 lg:mt-0">
+                <img className="h-6 inline" src={cartIcon} alt="cartIcon" />
+                <span className="inline pl-2">{cartItems.length} items</span>
+              </button>
+            </Link>
             <button
               className="inline-block text-sm px-4 py-2 leading-none border rounded text-green-600 border-green-600 hover:border-transparent hover:text-white hover:bg-green-600 mt-4 lg:mt-0"
               onClick={() =>

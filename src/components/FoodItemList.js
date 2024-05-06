@@ -1,5 +1,14 @@
 import { restaurant_img } from "../constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/CartSlice";
+
 const FoodItemList = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const addFoodToCart = (food) => {
+    dispatch(addItem(food));
+  };
+
   return (
     <>
       <div className="m-auto">
@@ -25,7 +34,10 @@ const FoodItemList = ({ items }) => {
                 alt="food"
                 src={restaurant_img + food?.card?.info?.imageId}
               />
-              <button className="bg-green-600 text-white p-2 rounded absolute bottom-0">
+              <button
+                className="bg-green-600 text-white p-2 rounded absolute bottom-0"
+                onClick={() => addFoodToCart(food)}
+              >
                 Add
               </button>
             </div>
