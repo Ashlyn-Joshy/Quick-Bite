@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
-import ShimmerEffect from "./ShimmerEffect";
+import ShimmerEffect from "./shimmer.js";
 import Search from "./Search.js";
 import useRestaurantDataBody from "../Hooks/useRestaurantDataBody.js";
 import useOnline from "../Hooks/useOnline.js";

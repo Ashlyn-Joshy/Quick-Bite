@@ -10,7 +10,7 @@ import ErrorPage from "./components/ErrorPage";
 import Profile from "./components/Profile";
 import Cart from "./components/Cart";
 import appStore from "./redux/AppStore";
-import ShimmerEffect from "./components/ShimmerEffect";
+import ShimmerEffect from "./components/shimmer";
 
 const Contact = lazy(() => import("./components/Contact"));
 const About = lazy(() => import("./components/About"));

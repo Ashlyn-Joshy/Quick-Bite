@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import ShimmerEffect from "./ShimmerEffect";
+import ShimmerEffect from "./shimmer.js";
 import useRestaurantDetails from "../Hooks/useRestaurantDetails.js";
 import { restaurant_img } from "../constants.js";
 import useOnline from "../Hooks/useOnline.js";
